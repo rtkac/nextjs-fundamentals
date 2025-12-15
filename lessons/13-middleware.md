@@ -110,7 +110,7 @@ export function middleware(request: NextRequest) {
       : 'en'
 
     return NextResponse.redirect(
-      new URL(`/${language}${pathname}`, request.url)
+      new URL(`/${language}${pathname}`, request.url),
     )
   }
 
@@ -168,7 +168,7 @@ export function middleware(request: NextRequest) {
     if (!authHeader) {
       return NextResponse.json(
         { success: false, message: 'Authorization header is required' },
-        { status: 401 }
+        { status: 401 },
       )
     }
 

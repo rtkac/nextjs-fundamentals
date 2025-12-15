@@ -9,7 +9,6 @@ Next.js 13+ introduced the App Router with a new `app/` directory structure. Let
 ### Next.js Enforced Conventions
 
 - **`app/`**: The main directory for your application code using the App Router
-
   - **`page.tsx`**: Defines the UI for a route
   - **`layout.tsx`**: Shared UI wrapper for a segment and its children
   - **`loading.tsx`**: Loading UI for a segment
@@ -17,7 +16,6 @@ Next.js 13+ introduced the App Router with a new `app/` directory structure. Let
   - **`not-found.tsx`**: 404 UI for a segment
 
 - **`app/api/`**: API routes for creating endpoints
-
   - Example: `app/api/users/route.ts`
 
 - **`public/`**: Static assets like images, fonts, and files
@@ -29,12 +27,10 @@ Next.js 13+ introduced the App Router with a new `app/` directory structure. Let
 The following are common patterns but are **not required** by Next.js:
 
 - **Component Organization**
-
   - `app/components/`: Reusable UI components
   - `app/ui/`: Basic UI elements
 
 - **Route Organization**
-
   - `app/(group)/`: Route groups for organizational purposes (doesn't affect URL)
 
 - **Other Common Folders**

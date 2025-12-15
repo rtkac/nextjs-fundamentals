@@ -78,7 +78,7 @@ export default function Badge({
       className={cn(
         'inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded-full',
         variantStyles[badgeVariant],
-        className
+        className,
       )}
       {...props}
     >

@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       message: 'Todo created successfully',
       todo: data,
     },
-    { status: 201 }
+    { status: 201 },
   )
 }
 
@@ -123,7 +123,7 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const id = params.id
 
@@ -150,7 +150,7 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string[] } }
+  { params }: { params: { slug: string[] } },
 ) {
   const slug = params.slug
 
@@ -187,7 +187,7 @@ export async function GET() {
     console.error('API error:', error)
     return NextResponse.json(
       { error: 'Internal Server Error' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
@@ -210,7 +210,7 @@ export async function GET() {
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
-    }
+    },
   )
 }
 
@@ -223,7 +223,7 @@ export async function OPTIONS() {
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
-    }
+    },
   )
 }
 ```
@@ -287,7 +287,7 @@ export async function GET() {
     console.error('Error fetching issues:', error)
     return NextResponse.json(
       { error: 'Failed to fetch issues' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
@@ -300,7 +300,7 @@ export async function POST(request: Request) {
     if (!data.title || !data.userId) {
       return NextResponse.json(
         { error: 'Title and userId are required' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
@@ -318,13 +318,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { message: 'Issue created successfully', issue: newIssue[0] },
-      { status: 201 }
+      { status: 201 },
     )
   } catch (error) {
     console.error('Error creating issue:', error)
     return NextResponse.json(
       { error: 'Failed to create issue' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
@@ -340,7 +340,7 @@ import { eq } from 'drizzle-orm'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: any } }
+  { params }: { params: { id: any } },
 ) {
   try {
     const id = params.id
@@ -358,7 +358,7 @@ export async function GET(
     console.error('Error fetching issue:', error)
     return NextResponse.json(
       { error: 'Failed to fetch issue' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
