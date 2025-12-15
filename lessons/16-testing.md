@@ -122,7 +122,7 @@ vi.mock('next/link', () => ({
         ...props,
         href: props.href,
       },
-      props.children
+      props.children,
     )
   },
 }))
@@ -429,7 +429,7 @@ describe('DashboardPage', () => {
     // Assertions
     expect(screen.getByText('No issues found')).toBeInTheDocument()
     expect(
-      screen.getByText('Get started by creating your first issue.')
+      screen.getByText('Get started by creating your first issue.'),
     ).toBeInTheDocument()
     expect(screen.getByText('Create Issue')).toBeInTheDocument()
   })

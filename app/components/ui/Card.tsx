@@ -17,7 +17,7 @@ export function Card({
       className={cn(
         'rounded-lg border border-gray-200 bg-white shadow-sm dark:border-dark-border-default dark:bg-dark-high',
         hoverable && 'transition-shadow hover:shadow-md',
-        className
+        className,
       )}
       {...props}
     >
@@ -50,8 +50,7 @@ export function CardTitle({ className, children, ...props }: CardTitleProps) {
   )
 }
 
-interface CardDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {
+interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode
 }
 

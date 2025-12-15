@@ -14,7 +14,7 @@ interface JWTPayload {
 
 // Secret key for JWT signing (in a real app, use an environment variable)
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-min-32-chars-long!!!'
+  process.env.JWT_SECRET || 'your-secret-key-min-32-chars-long!!!',
 )
 
 // JWT expiration time
@@ -133,7 +133,7 @@ export const getSession = cache(async () => {
       error.message.includes('During prerendering, `cookies()` rejects')
     ) {
       console.log(
-        'Cookies not available during prerendering, returning null session'
+        'Cookies not available during prerendering, returning null session',
       )
       return null
     }

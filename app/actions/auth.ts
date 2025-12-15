@@ -8,7 +8,7 @@ import {
   deleteSession,
 } from '@/lib/auth'
 import { getUserByEmail } from '@/lib/dal'
-import { mockDelay } from '@/lib/utils'
+// import { mockDelay } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 
 // Define Zod schema for signin validation
@@ -37,4 +37,122 @@ export type ActionResponse = {
   message: string
   errors?: Record<string, string[]>
   error?: string
+}
+
+export const signIn = async (formData: FormData): Promise<ActionResponse> => {
+  try {
+    const data = {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    }
+
+    const result = SignInSchema.safeParse(data)
+
+    if (!result.success) {
+      return {
+        success: false,
+        message: 'Validation failed',
+        errors: result.error.flatten().fieldErrors,
+      }
+    }
+
+    const user = await getUserByEmail(data.email)
+    if (!user) {
+      return {
+        success: false,
+        message: 'Invalid email or password',
+        errors: {
+          email: ['Invalid email or password'],
+        },
+      }
+    }
+
+    const isPasswordValid = await verifyPassword(data.password, user.password)
+    if (!isPasswordValid) {
+      return {
+        success: false,
+        message: 'Invalid email or password',
+        errors: {
+          email: ['Invalid email or password'],
+        },
+      }
+    }
+
+    await createSession(user.id)
+
+    return {
+      success: true,
+      message: 'Signed in successfully',
+    }
+  } catch (error) {
+    console.error('Sign in error:', error)
+    return {
+      success: false,
+      message: 'An error occurred while signing in',
+      error: 'Failed to sign in',
+    }
+  }
+}
+
+export const signUp = async (formData: FormData): Promise<ActionResponse> => {
+  try {
+    const data = {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+      confirmPassword: formData.get('confirmPassword') as string,
+    }
+
+    const result = SignUpSchema.safeParse(data)
+
+    if (!result.success) {
+      return {
+        success: false,
+        message: 'Validation failed',
+        errors: result.error.flatten().fieldErrors,
+      }
+    }
+    const existingUser = await getUserByEmail(data.email)
+    if (existingUser) {
+      return {
+        success: false,
+        message: 'Email is already registered',
+        errors: {
+          email: ['Email is already registered'],
+        },
+      }
+    }
+
+    const user = await createUser(data.email, data.password)
+
+    if (!user) {
+      return {
+        success: false,
+        message: 'Failed to create user',
+        error: 'User creation failed',
+      }
+    }
+
+    return {
+      success: true,
+      message: 'User created successfully',
+    }
+  } catch (e) {
+    console.error(e)
+    return {
+      success: false,
+      message: 'An error occurred while signing up',
+      error: 'Failed to sign up',
+    }
+  }
+}
+
+export const signOut = async () => {
+  try {
+    await deleteSession()
+  } catch (e) {
+    console.error(e)
+    throw e
+  } finally {
+    redirect('/signin')
+  }
 }

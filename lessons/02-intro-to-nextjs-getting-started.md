@@ -9,12 +9,10 @@ Next.js is a React-based framework for building hybrid applications. It enables 
 Let's get your development environment ready! Follow these steps to set up the project:
 
 1. **Install Node.js 20+:**
-
    - Ensure you have Node.js version 20 or higher installed. You can check your version by running `node -v` in your terminal.
    - If you need to install or upgrade Node.js, you can download it from [nodejs.org](https://nodejs.org/).
 
 2. **Clone the Repository:**
-
    - Clone the project repository to your local machine using Git. Replace `[repo]` with the actual repository URL provided for this lesson.
      ```bash
      git clone [repo]
@@ -22,7 +20,6 @@ Let's get your development environment ready! Follow these steps to set up the p
      ```
 
 3. **Install Dependencies:**
-
    - Navigate into the cloned repository directory in your terminal.
    - Install project dependencies using npm:
      ```bash
@@ -34,7 +31,6 @@ Let's get your development environment ready! Follow these steps to set up the p
      ```
 
 4. **Checkout the Starting Branch:**
-
    - For this lesson, we'll start with the code from lesson 3. Checkout to the `03` branch:
      ```bash
      git checkout 03
@@ -42,7 +38,6 @@ Let's get your development environment ready! Follow these steps to set up the p
      This branch contains the starting point for this lesson's exercises.
 
 5. **Configure Environment Variables:**
-
    - Look at the `.env.example` file in the project root. This file provides a template for the environment variables your application needs.
    - Create a new file named `.env` in the project root.
    - Copy the contents of `.env.example` into your new `.env` file.
@@ -56,7 +51,6 @@ Let's get your development environment ready! Follow these steps to set up the p
        - **Important:** Instagres databases expire after one hour. You can create a new one when needed or consider creating a free Neon account for a more persistent database.
 
 6. **Run Database Migrations:**
-
    - To set up the database schema, you need to run database migrations. This will create the necessary tables in your PostgreSQL database.
    - Run the following command in your terminal:
      ```bash
